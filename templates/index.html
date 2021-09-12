@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client-id"
+      content="856772302455-jk9qvh9rduhs2st3u54kf7t21ljts7vq.apps.googleusercontent.com"
+    />
+    <title>chatapp</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allison&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        border: 0;
+      }
+      .box {
+        margin: auto;
+        top: 10px;
+        width: 300px;
+        height: 700px;
+        display: block;
+        background-color: #fefbf3;
+        box-shadow: 0px 10px 20px #858070;
+        border-radius: 20px;
+      }
+      .g-signin2 {
+        position: absolute;
+        top: 400px;
+      }
+
+      #name {
+        position: absolute;
+
+        font-family: "Urbanist", sans-serif;
+        font-size: 20px;
+        top: 250px;
+        height: 30px;
+        width: 289px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 30px #ffedba;
+      }
+      .txtfont1 {
+        position: absolute;
+        top: 160px;
+        left: 700px;
+
+        font-family: "Allison", cursive;
+      }
+      #password {
+        position: absolute;
+
+        font-family: "Urbanist", sans-serif;
+        font-size: 20px;
+        top: 300px;
+        height: 30px;
+        width: 289px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 30px #ffedba;
+      }
+      #password:focus {
+        outline: none;
+      }
+      #name:focus {
+        outline: none;
+      }
+      .imgprop {
+        width: 100px;
+        position: absolute;
+        top: 30px;
+        left: 720px;
+      }
+      .submit {
+        position: absolute;
+        top: 500px;
+        width: 280px;
+        height: 30px;
+        border-radius: 20px;
+
+        background-color: rgb(44, 44, 44);
+        transition: 0.4s;
+      }
+      .submit:hover {
+        background-color: rgb(62, 62, 62);
+        transition: 0.4s;
+      }
+      .txtfont2 {
+        position: absolute;
+
+        font-family: "Urbanist", sans-serif;
+        font-size: 20px;
+        color: #ffffff;
+        top: 500px;
+        left: 720px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST">
+      <div class="box">
+        <img
+          src="https://chat.google.com/api/get_attachment_url?hl=en&url_type=FIFE_URL&content_type=image%2Fpng&attachment_reference=AF5iMzkni1vIuUfas1iusp7ReSFCKB_G2zYFu4Mrg98KDXxVj6hYKbwtJEbLLgSt8pCKWe8j7o1aP01aZ3dHKJIMyi9-dP8ijW05ujK7huq5zIy5j2LsNJzDcI-TWT_5Jh8rwYwn3C9reTCZXMVuQZbW5kumVSTnW7Tc8mi4kYVt4vvWxI5Mt2qltwob0DXGmYaFdkaTFB4RpE1iOtBFD--j7RZM8ZL1AGrgjK2dF49K2ObahxWTZCuegNd6g7I%3D&sz=s512"
+          class="imgprop"
+        />
+        <h1 class="txtfont1">hello again!</h1>
+        <input type="text" id="name" name="NAME" required placeholder=" name" />
+        <input
+          type="text"
+          id="password"
+          name="PASSWORD"
+          required
+          placeholder=" Password"
+        />
+        <button type="submit" class="submit">Add Blog</button>
+      </div>
+    </form>
+  </body>
+</html>
