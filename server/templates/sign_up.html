@@ -1,0 +1,73 @@
+{% extends "base.html"%} {% block head %}
+<title>Home</title>
+<style>
+  .hero-image {
+    background-image: url("https://i.pinimg.com/originals/e3/1b/75/e31b752875679b64fce009922f9f0dda.gif");
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col">
+        <img
+          src="https://m-cdn.phonearena.com/images/article/123442-wide-two_1200/Another-video-chat-app-gets-caught-in-a-privacy-breach-controversy.jpg"
+          alt=""
+          width="100%"
+          height="100%"
+        />
+      </div>
+      <div class="col">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              
+            />
+            <div id="emailHelp" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+<!-- <div class="hero-image">
+      <div class="hero-text">
+        
+      </div>
+    </div> -->
