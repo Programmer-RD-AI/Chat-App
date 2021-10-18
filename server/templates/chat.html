@@ -126,13 +126,7 @@
         color: #dd4b39;
         margin: 5px 20px;
       }
-      body {
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 20px;
-}
-
-.container {
+      .container_chat {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
   border-radius: 5px;
@@ -145,17 +139,14 @@
   background-color: #ddd;
 }
 
-.container::after {
+.container_chat::after {
   content: "";
   clear: both;
   display: table;
 }
 
-
     </style>
-    <title>
-        Chat
-    </title>
+    {% block head %} {% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius: 50px !important;">
@@ -181,35 +172,14 @@
               <a class="nav-link" href="/Chat">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/LogOut">LogOut</a>
+              <a class="nav-link" href="/LogOut">Log Out</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <br />
-    {% for chat in chats %}
-    <div class="jumbotron" style="  overflow: scroll !important; height: 500px !important; width: 500px !important
-    "><div class="container">
-        <b><p>{{chat['Message']}}</p></b>
-        <br>
-        <p>{{ chat['Email'] }}</p>
-      </div></div>
-      <form method="post">
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label"
-          >Chat</label
-        >
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          name="chat"
-          required
-        />
-      </div>
-      <button type="submit" class="btn btn-primary">Chat</button></form>
-    {% endfor %}
+    {% block body %}{% endblock %}
     <br>
     <div class="container">
       {% with messages = get_flashed_messages(with_categories=true) %}
@@ -217,14 +187,56 @@
         {% for category, message in messages %}
             <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
                 <span>{{ message }}</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
         {% endfor %}
     {% endif %}
 {% endwith %}
+<br>
+
+<div class="jumbotron" style="  overflow: scroll !important; height: 500px !important; width: 100% !important
+">{% for chat in chats %}<div class="container_chat">
+    <b><p>{{chat['Message']}} <br> - {{ chat['Email'] }} | {{chat['Time']}}</p></b>
+    
+  </div>{% endfor %}</div>
+    
+    <br>
+    <form method="post">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"
+          >Message</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          name="C"
+          required
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text">
+          Your email address will also be shared
+        </div>
+      </div>
+    </form>
     </div><br>
+    <br>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3082450474786918"
+    crossorigin="anonymous"></script>
+<!-- ad4 -->
+<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-3082450474786918"
+    data-ad-slot="7363651052"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br>
+    <br>
     <div class="footer-basic">
       <center>
         <a href="#"
@@ -265,11 +277,8 @@
       </center>
       <footer>
         <ul class="list-inline">
-          <li class="list-inline-item"><a href="/">Home</a></li>
-          <li class="list-inline-item"><a href="/Sign/Up">Sign Up</a></li>
-          <li class="list-inline-item"><a href="/Sign/In">Sign In</a></li>
-          <li class="list-inline-item"><a href="/#contactus">Contact Us</a></li>
-          <li class="list-inline-item"><a href="/#aboutus">About Us</a></li>
+          <li class="list-inline-item"><a href="/Chat">Home</a></li>
+          <li class="list-inline-item"><a href="/Log/Out">Log Out</a></li>
         </ul>
         <p class="copyright">Chat-App © 2021</p>
       </footer>

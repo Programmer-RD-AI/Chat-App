@@ -12,21 +12,27 @@ def signup():
     db = cluster["Auth"]
     collection = db["Auth"]
     if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        similar = collection.find_all({"Email": email, "Password": password})
+        email = request.form["E"]
+        password = request.form["P"]
+        similar = []
+        similar_iter = collection.find({"Email": email, "Password": password})
+        for s in similar_iter:
+            similar.append(s)
+        print(similar)
         if similar is None or similar == []:
             collection.insert_one({"Email": email, "Password": password})
-        session["Login"] = True
-        session["Password"] = password
-        session["Email"] = email
-        flash("Successfully signed up", "success")
-        return redirect("/Sign/In")
+            session["Login"] = True
+            session["Password"] = password
+            session["Email"] = email
+            flash("Successfully signed up", "success")
+            return redirect("/Sign/In")
+        flash("There is another user with that info", "danger")
+        return redirect("/")
     return render_template("sign_up.html")
 
 
-@app.route("/Sign/In")
-@app.route("/Sign/In/")
+@app.route("/Sign/In", methods=["POST", "GET"])
+@app.route("/Sign/In/", methods=["POST", "GET"])
 def signin():
     db = cluster["Auth"]
     collection = db["Auth"]
@@ -36,12 +42,16 @@ def signin():
         flash("Login successful", "success")
         return redirect("/Chat")
     if request.method == "POST":
-        email = request.form("email")
-        password = request.form("password")
-        similar = collection.find_all({"Email": email, "Password": password})
+        email = request.form["E"]
+        password = request.form["P"]
+        similar = []
+        similar_iter = collection.find({"Email": email, "Password": password})
+        for s in similar_iter:
+            similar.append(s)
         if similar is not None or similar != []:
             session["Auth"] = True
-            session[""]
+            session["Email"] = email
+            session["Password"] = password
             flash("Login successful", "success")
             return redirect("/Chat")
         flash("Login Failed", "danger")
@@ -49,16 +59,23 @@ def signin():
     return render_template("sign_in.html")
 
 
-@app.route("/Chat", methods=["POST", "GET"])
-@app.route("/Chat/", methods=["POST", "GET"])
+@app.route("/Chat", methods=["GET", "POST"])
+@app.route("/Chat/", methods=["GET", "POST"])
 def chat():
+    db = cluster["Chat"]
+    collection = db["Chat"]
     if "Auth" in session:
-        db = cluster["Chat"]
-        collection = db["Chat"]
-        chats = collection.find_all()
         if request.method == "POST":
-            chat = request.POST.get("chat")
-            collection.insert_one({'Message':chat,'Email':session.get('Email')})
+            chat = request.form["C"]
+            print(chat)
+            collection.insert_one({"Message": chat, "Email": session.get("Email"),'Time':str(datetime.datetime.now())})
+            flash("Message Send", "success")
+            return redirect("/Chat")
+        chats = []
+        chats_iter = collection.find()
+        for c in chats_iter:
+            chats.append(c)
+
         return render_template("chat.html", chats=chats)
     return redirect("/")
 
